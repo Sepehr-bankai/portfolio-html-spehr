@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mojtaba Qaraei | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #05070c;
+      --panel: rgba(12, 17, 28, .78);
+      --panel-strong: rgba(18, 25, 39, .94);
+      --line: rgba(255, 255, 255, .1);
+      --muted: #8f9bad;
+      --text: #f5f7fb;
+      --coral: #ff6b62;
+      --blue: #5aa7ff;
+      --green: #68d391;
+      --violet: #a78bfa;
+      --shadow: 0 28px 90px rgba(0, 0, 0, .46);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 18% 8%, rgba(255, 107, 98, .18), transparent 28rem),
+        radial-gradient(circle at 86% 18%, rgba(90, 167, 255, .18), transparent 30rem),
+        linear-gradient(135deg, #05070c 0%, #08111f 46%, #05070c 100%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .28;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(to bottom, #000, transparent 76%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 340px minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
+      padding: 42px 0 70px;
+    }
+
+    .profile {
+      position: sticky;
+      top: 28px;
+      min-height: calc(100vh - 56px);
+      display: flex;
+      align-items: center;
+    }
+
+    .profile-card,
+    .readme,
+    .project {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(22px);
+    }
+
+    .profile-card {
+      width: 100%;
+      border-radius: 22px;
+      padding: 22px;
+    }
+
+    .avatar {
+      width: 104px;
+      aspect-ratio: 1;
+      border-radius: 20px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 22px;
+      background:
+        linear-gradient(135deg, rgba(255, 107, 98, .18), rgba(90, 167, 255, .16)),
+        #121927;
+      border: 1px solid rgba(255, 255, 255, .13);
+      color: var(--coral);
+      font-size: 32px;
+      font-weight: 800;
+    }
+
+    .eyebrow,
+    .mono {
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+    }
+
+    .eyebrow {
+      color: var(--green);
+      font-size: 12px;
+      letter-spacing: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 0 22px var(--green);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(44px, 7vw, 92px);
+      line-height: .94;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 58px);
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: 0;
+    }
+
+    p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .role { margin-top: 10px; color: #c8d0dd; font-size: 17px; }
+
+    .profile-actions,
+    .readme-actions,
+    .project-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .button {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      padding: 0 14px;
+      background: rgba(255, 255, 255, .05);
+      color: var(--text);
+      font-weight: 700;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, .24);
+      background: rgba(255, 255, 255, .09);
+    }
+
+    .button.primary {
+      background: linear-gradient(135deg, var(--coral), #ff887d);
+      border-color: rgba(255, 255, 255, .22);
+      color: #170909;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 22px 0;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 10px;
+      background: rgba(255, 255, 255, .04);
+    }
+
+    .stat strong { display: block; font-size: 20px; }
+    .stat span { color: var(--muted); font-size: 12px; }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .chip {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 10px;
+      color: #dbe3f0;
+      background: rgba(255, 255, 255, .04);
+      font-size: 12px;
+    }
+
+    .main {
+      padding-top: max(8vh, 42px);
+    }
+
+    .intro {
+      margin-bottom: 28px;
+    }
+
+    .intro p {
+      max-width: 700px;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    .readme {
+      border-radius: 22px;
+      overflow: hidden;
+      transform-style: preserve-3d;
+    }
+
+    .readme-bar {
+      min-height: 46px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 0 18px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, .04);
+    }
+
+    .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      background: var(--coral);
+    }
+
+    .dot:nth-child(2) { background: #f5c14a; }
+    .dot:nth-child(3) { background: var(--green); }
+
+    .path {
+      margin-left: 8px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .readme-body {
+      padding: clamp(22px, 4vw, 38px);
+    }
+
+    .repo-title {
+      margin: 0 0 14px;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1.05;
+    }
+
+    .repo-title span { color: var(--coral); }
+
+    .badge-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 24px 0;
+    }
+
+    .badge {
+      border-radius: 9px;
+      border: 1px solid rgba(90, 167, 255, .26);
+      background: rgba(90, 167, 255, .1);
+      color: #b8d9ff;
+      padding: 7px 10px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .terminal {
+      margin-top: 24px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(0, 0, 0, .34);
+      padding: 16px;
+      color: #cbd5e1;
+      overflow: auto;
+    }
+
+    .terminal div + div { margin-top: 8px; }
+    .prompt { color: var(--green); }
+    .link { color: var(--blue); }
+
+    .section {
+      padding: 42px 0 90px;
+      perspective: 1200px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 22px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+
+    .section-head p { max-width: 560px; }
+
+    .projects {
+      display: grid;
+      gap: 22px;
+    }
+
+    .project {
+      min-height: 390px;
+      border-radius: 24px;
+      padding: clamp(22px, 4vw, 34px);
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+    }
+
+    .project::after {
+      content: "";
+      position: absolute;
+      inset: auto -12% -42% 34%;
+      height: 240px;
+      background: radial-gradient(circle, rgba(255, 107, 98, .24), transparent 68%);
+      pointer-events: none;
+    }
+
+    .project:nth-child(2)::after {
+      background: radial-gradient(circle, rgba(90, 167, 255, .24), transparent 68%);
+    }
+
+    .project:nth-child(3)::after {
+      background: radial-gradient(circle, rgba(104, 211, 145, .21), transparent 68%);
+    }
+
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: start;
+      margin-bottom: 20px;
+    }
+
+    .project-index {
+      color: var(--coral);
+      font-size: 13px;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 26px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 22px 0 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .feature-list li {
+      color: #d8e0ec;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .feature-list li::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      margin-top: 9px;
+      flex: 0 0 auto;
+      background: var(--blue);
+    }
+
+    .code {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(0, 0, 0, .32);
+      padding: 16px;
+      color: #cbd5e1;
+      overflow: auto;
+      min-height: 150px;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .code .comment { color: #7c8798; }
+    .code .accent { color: var(--coral); }
+    .code .blue { color: var(--blue); }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 28px 0 48px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 22px;
+      }
+
+      .profile {
+        position: static;
+        min-height: auto;
+      }
+
+      .main { padding-top: 0; }
+      .project-grid { grid-template-columns: 1fr; }
+      .section-head { display: block; }
+      .section-head p { margin-top: 12px; }
+    }
+
+    @media (max-width: 560px) {
+      .page { width: min(100% - 22px, 1180px); }
+      .profile-card { padding: 18px; }
+      .stats { grid-template-columns: 1fr; }
+      .project-top { display: block; }
+      .project-top .badge-grid { margin-top: 14px; }
+      .button { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero" aria-label="Portfolio hero">
+      <aside class="profile">
+        <div class="profile-card reveal">
+          <div class="eyebrow">Open to work</div>
+          <div class="avatar" aria-hidden="true">MQ</div>
+          <h3>Mojtaba Qaraei</h3>
+          <p class="role">Software Developer <br> Building automation, bots, trading tools, and data workflows.</p>
+
+          <div class="stats" aria-label="Repository statistics">
+            <div class="stat"><strong>3</strong><span>Featured repos</span></div>
+            <div class="stat"><strong>Python</strong><span>Main stack</span></div>
+            <div class="stat"><strong>API</strong><span>Automation focus</span></div>
+          </div>
+
+          <div class="chips" aria-label="Skills">
+            <span class="chip">FastAPI</span>
+            <span class="chip">Telegram Bots</span>
+            <span class="chip">Trading APIs</span>
+            <span class="chip">Data Scraping</span>
+            <span class="chip">Docker</span>
+          </div>
+
+          <div class="profile-actions">
+            <a class="button primary" href="https://github.com/Sepehr-bankai" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="button" href="#projects">Projects</a>
+          </div>
+        </div>
+      </aside>
+
+      <div class="main">
+        <div class="intro reveal">
+          <div class="eyebrow">README driven portfolio</div>
+          <h1>Backend tools with sharp product edges.</h1>
+          <p>Practical software for shops, trading workflows, and public-data automation. Clean interfaces, measurable behavior, and enough polish to make the work easy to trust.</p>
+        </div>
+
+        <article class="readme reveal">
+          <div class="readme-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="path mono">README.md / Sepehr-bankai / portfolio</span>
+          </div>
+          <div class="readme-body">
+            <p class="repo-title mono"># <span>Sepehr-bankai</span> / portfolio</p>
+            <p>Developer portfolio generated from real repository links and README files, shaped into concise project stories instead of pasted documentation.</p>
+
+            <div class="badge-grid" aria-label="Tech stack">
+              <span class="badge">Python</span>
+              <span class="badge">FastAPI</span>
+              <span class="badge">PostgreSQL</span>
+              <span class="badge">Docker</span>
+              <span class="badge">Async IO</span>
+              <span class="badge">REST APIs</span>
+              <span class="badge">Telegram</span>
+              <span class="badge">Bybit</span>
+            </div>
+
+            <div class="terminal mono" aria-label="Quick commands">
+              <div><span class="prompt">$</span> git clone <span class="link">github.com/Sepehr-bankai/telegram-digikala-bot</span></div>
+              <div><span class="prompt">$</span> docker compose up --build</div>
+              <div><span class="prompt">$</span> python aggressive.py</div>
+            </div>
+
+            <div class="readme-actions">
+              <a class="button primary" href="#projects">View Projects</a>
+              <a class="button" href="https://github.com/Sepehr-bankai" target="_blank" rel="noreferrer">Open GitHub</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="projects" aria-label="Featured projects">
+      <div class="section-head reveal">
+        <h2>Featured repositories</h2>
+        <p>README files distilled into project sections: what each system does, why it matters, and the technical choices that carry the product.</p>
+      </div>
+
+      <div class="projects">
+        <article class="project depth-card">
+          <div class="project-top">
+            <div>
+              <div class="project-index mono">01 / Commerce automation</div>
+              <h3>Telegram Digikala Bot</h3>
+            </div>
+            <div class="badge-grid">
+              <span class="badge">FastAPI</span>
+              <span class="badge">PostgreSQL</span>
+              <span class="badge">Docker</span>
+            </div>
+          </div>
+          <div class="project-grid">
+            <div>
+              <p>A Telegram shop bot with an admin dashboard and automated Digikala price tracking. It keeps products just below marketplace pricing while protecting buy-price margins through approval flows.</p>
+              <ul class="feature-list">
+                <li>Admin dashboard for products, orders, deposits, tickets, and broadcasts.</li>
+                <li>Minute-based Digikala API checks with Rial to Toman conversion.</li>
+                <li>Below-buy-price approval from the dashboard or Telegram admin buttons.</li>
+              </ul>
+              <div class="project-actions">
+                <a class="button primary" href="https://github.com/Sepehr-bankai/telegram-digikala-bot" target="_blank" rel="noreferrer">GitHub</a>
+              </div>
+            </div>
+            <pre class="code mono"><code><span class="comment"># pricing rule</span>
+digikala_toman = rial_price / 10
+target_price = digikala_toman * <span class="accent">0.998</span>
+
+if target_price &lt; buy_price:
+    request_admin_approval()</code></pre>
+          </div>
+        </article>
+
+        <article class="project depth-card">
+          <div class="project-top">
+            <div>
+              <div class="project-index mono">02 / Trading systems</div>
+              <h3>Bybit CHOCH Trader</h3>
+            </div>
+            <div class="badge-grid">
+              <span class="badge">Async IO</span>
+              <span class="badge">Bybit API</span>
+              <span class="badge">Pandas</span>
+            </div>
+          </div>
+          <div class="project-grid">
+            <div>
+              <p>A cryptocurrency trading bot that scans multiple timeframes for CHOCH and MTR patterns, then places position-aware market orders with configurable TP and SL logic.</p>
+              <ul class="feature-list">
+                <li>Priority scan from weekly down to 5 minute candles.</li>
+                <li>Server time sync to avoid Bybit authentication drift errors.</li>
+                <li>Structured JSON logs for signals, errors, and debugging.</li>
+              </ul>
+              <div class="project-actions">
+                <a class="button primary" href="https://github.com/Sepehr-bankai/bybit-choch-trader" target="_blank" rel="noreferrer">GitHub</a>
+              </div>
+            </div>
+            <pre class="code mono"><code><span class="comment"># signal priority</span>
+timeframes = [<span class="blue">"W"</span>, <span class="blue">"D"</span>, <span class="blue">"4H"</span>, <span class="blue">"1H"</span>, <span class="blue">"15m"</span>, <span class="blue">"5m"</span>]
+
+for tf in timeframes:
+    if detect_choch_mtr(tf):
+        place_order()
+        break</code></pre>
+          </div>
+        </article>
+
+        <article class="project depth-card">
+          <div class="project-top">
+            <div>
+              <div class="project-index mono">03 / Public data</div>
+              <h3>Maps Gov GE Cadastral Collector</h3>
+            </div>
+            <div class="badge-grid">
+              <span class="badge">Python</span>
+              <span class="badge">JSON</span>
+              <span class="badge">API Automation</span>
+            </div>
+          </div>
+          <div class="project-grid">
+            <div>
+              <p>A coordinate-driven workflow for collecting cadastral information from Georgia's public map service faster than manual map clicking.</p>
+              <ul class="feature-list">
+                <li>Generates coordinate sets from latitude, longitude, and radius inputs.</li>
+                <li>Sends controlled POST requests to the map API.</li>
+                <li>Saves each coordinate response as structured JSON for review.</li>
+              </ul>
+              <div class="project-actions">
+                <a class="button primary" href="https://github.com/Sepehr-bankai/maps-gov-ge" target="_blank" rel="noreferrer">GitHub</a>
+              </div>
+            </div>
+            <pre class="code mono"><code><span class="comment"># workflow</span>
+coordinates = build_circle(lat, lon, radius)
+
+for point in coordinates:
+    response = post_to_map_api(point)
+    save_json(response)</code></pre>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer class="footer">
+    <span class="mono">Sepehr-bankai / portfolio</span>
+
+    <span>Built as a static HTML portfolio from local README content.</span>
+
+    <a href="mailto:Sepehrqaraei@gmail.com" class="footer-email">
+        Sepehrqaraei@gmail.com
+    </a>
+    </footer>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script>
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!reduceMotion && window.gsap) {
+      gsap.registerPlugin(ScrollTrigger);
+
+      gsap.from(".reveal", {
+        opacity: 0,
+        y: 28,
+        duration: 0.9,
+        stagger: 0.12,
+        ease: "power3.out"
+      });
+
+      gsap.utils.toArray(".depth-card").forEach((card) => {
+        gsap.fromTo(card,
+          { opacity: 0, y: 120, z: -180, rotateX: 8, filter: "blur(12px)" },
+          {
+            opacity: 1,
+            y: 0,
+            z: 0,
+            rotateX: 0,
+            filter: "blur(0px)",
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 86%",
+              end: "top 44%",
+              scrub: true
+            }
+          }
+        );
+      });
+
+      gsap.to(".readme", {
+        y: -28,
+        rotateX: 2,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".hero",
+          start: "top top",
+          end: "bottom top",
+          scrub: true
+        }
+      });
+    }
+  </script>
+</body>
+</html>
